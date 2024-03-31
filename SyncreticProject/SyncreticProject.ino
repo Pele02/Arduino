@@ -7,8 +7,8 @@ Adafruit_LiquidCrystal lcd(0);
 const int ledPin = 13;
 
 void setup() {
-  Serial.begin(9600);  // Se initializeaza comunicarea seriala
   pinMode(ledPin, OUTPUT); // Setam pinul LED la iesire
+  Serial.begin(9600);  // Se initializeaza comunicarea seriala
   lcd.begin(16, 2);
 }
 
@@ -39,7 +39,7 @@ void loop() {
 
   // Verifica daca a fost primita o comanda
   if (Serial.available() > 0) {
-    String command = Serial.readString();
+    char command = Serial.read();
     
     //Aprindem/Stingem Led-ul
     if (command == 'A') {
