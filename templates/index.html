@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>web lights</title>
+
+		<meta charset="UTF-8">
+		<title>Syncretic Project</title>
 		<style>
-			.interItems {
-				text-align: center;
-			}
-			.interactiveButtons {
-				padding: 2em;
-				display: flex;
-			    justify-content: center;
-			    align-items: center;
-			    height: 200px;
-			}
 			.onButton {
 				width: 10em;
 				height: 10em;
@@ -21,18 +13,24 @@
 				width: 10em;
 				height: 10em;
 			}
+			.disconnectButton{
+				margin-left: 90px;
+				height: 5em;
+			}
 		</style>
 	</head>
 	<body>
-		<div class='interItems'>
-			<h1>Control an led with an Arduino using Python</h1>
-			<div class='interactiveButtons'>
+
+		<!-- Led Control -->
+		<div class='LED-Control'>
+			<h1>Control LED</h1>
+			<div class='LED-Buttons'>
 				<form action='#' method='POST'>
-					<button class='onButton' onclick="ledOn()" name="on" value="on">on</button>
-					<button class='offButton' onclick="ledOff()" name="off" value="off">off</button>
+					<button class='onButton' onclick="ledOn()" name="on" value="on">On</button>
+					<button class='offButton' onclick="ledOff()" name="off" value="off">Off</button>
 				</form>
 			</div>
-			<button class='disconnectBtton' onclick="disconnect()" name="dis" value="dis">disconnect</button>
+			<button class='disconnectButton' onclick="disconnect()" name="dis" value="dis">Disconnect</button>
 		</div>
 	</body>
 </html>

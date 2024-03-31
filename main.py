@@ -1,17 +1,19 @@
 from flask import Flask, render_template, request
 from serial import Serial
 
-serial_com = Serial(port='COM3', baudrate=9600, timeout=0.1)
+serial_com = Serial(port='COM3', baudrate=9600, timeout=3)
 
 app = Flask(__name__)
 
 
 def ledOn():
     serial_com.write(str('on').encode())
+    print( "Led is ON")
 
 
 def ledOff():
     serial_com.write(str('off').encode())
+    print( "Led is OFF")
 
 
 def disconnect():
