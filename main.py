@@ -2,22 +2,17 @@ from flask import Flask, render_template, request
 from serial import Serial
 
 serial_com = Serial(port='COM3', baudrate=9600, timeout=3)
-
 app = Flask(__name__)
 
+line = serial_com.readline().decode("utf-8")
+print(line)
 
 def ledOn():
-    serial_com.write(str('on').encode())
-    print( "Led is ON")
+    serial_com.write("A".encode())
 
 
 def ledOff():
-    serial_com.write(str('off').encode())
-    print( "Led is OFF")
-
-
-def disconnect():
-    serial_com.close()
+    serial_com.write("S".encode())
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -27,9 +22,6 @@ def index():
             ledOn()
         if 'off' in request.form.to_dict():
             ledOff()
-        if 'dis' in request.form.to_dict():
-            disconnect()
-
     return render_template('index.html')
 
 
