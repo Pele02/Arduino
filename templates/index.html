@@ -19,13 +19,19 @@
 
 		<!-- Led Control -->
 		<div class='LED-Control'>
-			<h1>Control LED</h1>
+			<h2>Control LED</h2>
 			<div class='LED-Buttons'>
 				<form action='#' method='POST'>
 					<button class='onButton' onclick="ledOn()" name="on" value="on">On</button>
 					<button class='offButton' onclick="ledOff()" name="off" value="off">Off</button>
 				</form>
 			</div>
+
+			<!-- Temp sensor -->
+		</div>
+			<h2>Temperatura si Umiditatea</h2>
+			<p>{{temp}}</p>
+		<div>
 		</div>
 	</body>
 </html>

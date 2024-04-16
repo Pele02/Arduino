@@ -37,17 +37,18 @@ void loop() {
   lcd.print(temperature);
   lcd.print(" C");
 
-  // Verifica daca a fost primita o comanda
-  if (Serial.available() > 0) {
+
+ // Verifica daca a fost primita o comanda
+ if (Serial.available() > 0) {
     char command = Serial.read();
-    
+
     //Aprindem/Stingem Led-ul
     if (command == 'A') {
       digitalWrite(ledPin, HIGH);
     } else if (command == 'S') {
-      digitalWrite(ledPin, LOW);  
+      digitalWrite(ledPin, LOW);
     }
   }
-  
+
   delay(1000);
 }
