@@ -38,5 +38,47 @@
 			<h2>Temperatura si Umiditatea</h2>
 			<p>{{temp}}</p>
 		</div>
+
+			<!-- Message Input -->
+		<div>
+			<h2>Scrie mesaj:</h2>
+			<form action="#" method="POST">
+				<input type="text" name="message" id="messageInput">
+				<button type="submit">Salveaza mesaj</button>
+			</form>
+		</div>
+
+		<script>
+			function sendMessage() {
+				var message = document.getElementById('messageInput').value;
+				fetch('/save_message', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ message: message })
+				})
+				.then(response => {
+					if (response.ok) {
+						console.log('Message saved successfully');
+					} else {
+						console.error('Failed to save message');
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+				});
+			}
+		</script>
+
+			<!-- Display Messages -->
+		<div>
+			<h2>Mesaje:</h2>
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
 	</body>
 </html>

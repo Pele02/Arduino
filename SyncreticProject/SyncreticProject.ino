@@ -1,6 +1,7 @@
 
 #include <DHT11.h> //Librarie pentru a putea fi folosit senzorul DHT11
 #include <Adafruit_LiquidCrystal.h> //Librarie pentru lcd
+#include <EEPROM.h> 
 
 DHT11 dht11(A0);
 Adafruit_LiquidCrystal lcd(0);
@@ -47,8 +48,30 @@ void loop() {
       digitalWrite(ledPin, HIGH);
     } else if (command == 'S') {
       digitalWrite(ledPin, LOW);
+    } else if (command == 'M'){
+      saveMessage();
     }
   }
 
   delay(1000);
+}
+
+void saveMessage() {
+  String message = Serial.readStringUntil('\n'); //Citim mesajele
+  int messageLength = message.length(); 
+
+
+  if (messageLength > EEPROM.length() - 1) {
+    messageLength = EEPROM.length() - 1;
+  }
+
+  //Scriem mesaj in EEPROM
+  for (int i = 0; i < messageLength; i++) {
+    EEPROM.write(i, message.charAt(i));
+  }
+
+  //
+  EEPROM.write(messageLength, '\0');
+
+  Serial.println("Message saved to EEPROM");
 }
