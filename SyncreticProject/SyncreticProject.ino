@@ -2,10 +2,12 @@
 #include <DHT11.h> //Librarie pentru a putea fi folosit senzorul DHT11
 #include <Adafruit_LiquidCrystal.h> //Librarie pentru lcd
 #include <EEPROM.h> 
+#include <ZP4510.h>
 
 DHT11 dht11(A0);
 Adafruit_LiquidCrystal lcd(0);
 const int ledPin = 13;
+ZP4510 waterLevelSensor(12);
 
 void setup() {
   pinMode(ledPin, OUTPUT); // Setam pinul LED la iesire
@@ -17,6 +19,7 @@ void loop() {
   //Variabile
   int temperature = 0;
   int humidity = 0;
+  int waterLevel = waterLevelSensor.WaterLevel();
 
   //Citire date senzor
   int result = dht11.readTemperatureHumidity(temperature, humidity);
@@ -24,7 +27,7 @@ void loop() {
   if (result == 0) {
     Serial.print("Temperatura: ");
     Serial.print(temperature);
-    Serial.print(" °C\t Umiditate: ");
+    Serial.print(" °C\nUmiditate: ");
     Serial.print(humidity);
     Serial.println(" %");
     } else {
@@ -53,7 +56,14 @@ void loop() {
     }
   }
 
-  delay(1000);
+  // Print the water level to the Serial Monitor
+  if (waterLevel) {
+    Serial.println("Inundatie");
+  } else {
+    Serial.println("Normal");
+  }
+
+  delay(2500);
 }
 
 void saveMessage() {
