@@ -55,8 +55,8 @@ def sendEmail():
             connection.sendmail(
                 from_addr=sender,
                 to_addrs=receiver,
-                msg='Subject:Atentie!\n'
-                    '\nNivelul apei a crescut, posibila inundatie!!!'
+                msg='Subject:Flood Warning!\n'
+                    '\nThe water level is growing, it can cause a flood!!!'
             )
         EMAIL_SEND = True
 
