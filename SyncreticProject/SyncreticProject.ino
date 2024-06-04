@@ -63,7 +63,7 @@ void loop() {
     Serial.println("Normal");
   }
 
-  delay(1500);
+  delay(2000);
 }
 
 void saveMessage() {

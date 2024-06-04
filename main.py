@@ -39,7 +39,6 @@ def readSerialData():
                 FLOOD_DATE = FLOOD_DATE.replace(second=0, microsecond=0)
                 sendEmail()
 
-
 def saveMessage(message):
     serial_com.write(("M" + message + "\n").encode())  #Send message to Arduino EEPROM
 
@@ -47,7 +46,8 @@ def sendEmail():
     global EMAIL_SEND
     if not EMAIL_SEND:
         sender = "pelealex02@gmail.com"
-        receiver= "antoniopopa2002@gmail.com"
+        receiver = "antoniopopa2002@gmail.com"
+        #receiver = "pele_alex02@yahoo.com"
         password = "bjuk ydww rilv zsbe"
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as connection:
@@ -76,7 +76,6 @@ def index():
             MESSAGES.append(message)
 
     EMAIL_SEND = False
-    print()
     return render_template('index.html', temp=TEMPERATURE, hum=HUMIDITY, led_status=LED_STATUS, messages=MESSAGES,  flood_event=FLOOD_DATE)
 
 
@@ -87,7 +86,7 @@ def save_message():
 
 @app.route("/get_data", methods=['GET'])
 def get_data():
-    return jsonify(temp=TEMPERATURE, hum=HUMIDITY, flood_event=FLOOD_DATE)
+     return jsonify(temp=TEMPERATURE, hum=HUMIDITY, flood_event=FLOOD_DATE)
 
 if __name__ == "__main__":
     serial_thread = Thread(target=readSerialData)
