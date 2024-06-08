@@ -47,7 +47,6 @@ def sendEmail():
     if not EMAIL_SEND:
         sender = "pelealex02@gmail.com"
         receiver = "antoniopopa2002@gmail.com"
-        #receiver = "pele_alex02@yahoo.com"
         password = "bjuk ydww rilv zsbe"
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as connection:
